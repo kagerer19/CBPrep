@@ -1,4 +1,4 @@
-package JavaW4;
+package JavaW4.dayTwo;
 
 import java.util.Random;
 import java.util.Scanner;

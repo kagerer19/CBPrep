@@ -1,4 +1,4 @@
-package JavaW4;
+package JavaW4.dayOne;
 
 public class workingWithStrings {
     public static void main(String[] args) {
