@@ -20,7 +20,17 @@ public class caesarChiffre {
         System.out.println("Your encrypted message is safe with us!");
         System.out.println("---------------------------------------->");
         for (char c : chars) {
-            c += key;
+            if (c >= 'a' && c <= 'z') {
+                c += key;
+                if (c > 'z') {
+                    c -= 26;
+                }
+            } else if (c >= 'A' && c <= 'Z') {
+                c += key;
+                if (c > 'Z') {
+                    c -= 26;
+                }
+            }
             System.out.print(c);
         }
         System.out.println("\n---------------------------------------->");
