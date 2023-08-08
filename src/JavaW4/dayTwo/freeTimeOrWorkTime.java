@@ -6,23 +6,23 @@ public class freeTimeOrWorkTime {
     public static void main(String[] aargs) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Check if your request is within out working times or not (Please use 24hr time.)");
+        System.out.println("Check if your request is within out working times or not");
         String isWorkTime = sc.nextLine();
 
-        String[] timeArr = isWorkTime.split(":", 2);
+        int time = Integer.parseInt(isWorkTime);
 
-        //Store the Hour and Min
-        int workTimeHr = Integer.parseInt(timeArr[0]);
-        int workTimeMin = Integer.parseInt(timeArr[1]);
+        if ((time >= 8 && time < 12) || (time >= 13 && time <= 16)) {
+            if (time <= 12) {
+                System.out.println("We are in the office");
+            } else {
+                System.out.println("We are in the office");
+            }
 
-        if (workTimeHr >= 8 && workTimeMin >= 30) {
-            System.out.println("We are at the office");
-        } else if(workTimeHr >= 12 && workTimeHr <= 13) {
-            System.out.println("We are on our lunch break");
-        } else if(workTimeHr < 15){
-            System.out.println("We are at the office");
+        } else if ((time == 12)) {
+            System.out.println("We are on lunch break");
+
         } else {
-            System.out.println("We are not here right now");
+            System.out.println("This is our free time");
         }
     }
 }
