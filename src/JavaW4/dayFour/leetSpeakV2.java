@@ -1,14 +1,19 @@
 package JavaW4.dayFour;
 
+import java.util.HashMap;
 import java.util.Scanner;
-
-public class leetspeak {
+public class leetSpeakV2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        HashMap<Character, Character> leetMap = new HashMap<>();
 
         char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
         char[] leetChars = {'@', '8', '(', 'D', '3', 'F', '6', '#', '!', 'J', 'K', '1', 'M', 'N', '0', 'P', 'Q', 'R', '$', '7', 'U', 'V', 'W', 'X', 'Y', '2'};
         String leetSpeakPhrase = "";
+
+        for (int i = 0; i < alphabet.length; i++) {
+            leetMap.put(alphabet[i], leetChars[i]);
+        }
 
         System.out.println("Enter the phrase you would like to leet: ");
         String textToEncrypt = scanner.nextLine().toUpperCase();
@@ -17,12 +22,8 @@ public class leetspeak {
             char temp = textToEncrypt.charAt(i);
             if (Character.isDigit(temp)) {
                 leetSpeakPhrase += temp;
-            } else {
-                for (int j = 0; j < alphabet.length; j++) {
-                    if (temp == alphabet[j]) {
-                        leetSpeakPhrase += leetChars[j];
-                    }
-                }
+            } else if (leetMap.containsKey(temp)) {
+                leetSpeakPhrase += leetMap.get(temp);
             }
         }
         System.out.println(leetSpeakPhrase);
