@@ -1,28 +1,34 @@
 package JavaW4;
 
+import java.util.Arrays;
+import java.util.Random;
+
 public class GameOfLife {
     public static void main(String[] args) throws InterruptedException {
+        Random r = new Random();
 
-        int[][] grid = {{0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0},
-                {0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0},
-                {0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0},
-                {0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0},
-                {0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0},
-                {0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0},
-                {0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0},
-                {0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0},
-                {0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0},
-                {0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0},
-        };
+        int[][] grid = new int[10][10];
 
-        while (true) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid.length; j++) {
+                grid[i][j] = r.nextInt(2);
+            }
+        }
+
+
+        boolean ready = false;
+        while (!ready) {
             printGame(grid);
-            nextGeneration(grid);
+            int[][] newGrid = nextGeneration(grid);
             Thread.sleep(500);
+            if (Arrays.deepEquals(grid, newGrid)) {
+                ready = true;
+            }
+            grid = newGrid;
         }
     }
 
-    static void nextGeneration(int[][] grid) {
+    static int[][] nextGeneration(int[][] grid) {
         int[][] newGrid = new int[grid.length][grid[0].length];
 
         for (int l = 0; l < grid.length; l++) {
@@ -38,13 +44,7 @@ public class GameOfLife {
                 }
             }
         }
-
-        // Copy newGrid into grid to update the current generation
-        for (int l = 0; l < grid.length; l++) {
-            for (int m = 0; m < grid[l].length; m++) {
-                grid[l][m] = newGrid[l][m];
-            }
-        }
+        return newGrid;
     }
 
     static int countNeighbours(int[][] grid, int row, int col) {
@@ -60,7 +60,6 @@ public class GameOfLife {
                 }
             }
         }
-
         return aliveNeighbours;
     }
 
@@ -78,19 +77,3 @@ public class GameOfLife {
         }
     }
 }
-
-//if a cell is dead and has exactly 3 living neighbors, it will be born in the next generation 👶
-//if a cell is alive and has less than 2 neighbors it dies of loneliness 😔
-//if a cell is alive and has 2 or 3 neighbors, it stays alive 🤝‍
-//if a cell is alive and has more than 3 neighbors, it dies from overpopulation 💀
-
-//   #  #  #  #  #  #  #  #  #
-//             #  #  #  #
-//   #  #    #
-//   #  #    #  #
-//   #  #    #  #
-//   #  #    #  #
-//   #  #    #  #
-//     #
-//   #  #    #    #  #  #  #
-//   #        #  #  #  #  #
