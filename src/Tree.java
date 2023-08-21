@@ -6,6 +6,7 @@ class Tree {
     private int leaves;
     private int id;
 
+    //tree constructor
     public Tree(int leaves, int id) {
         this.leaves = leaves;
         this.id = id;
@@ -22,14 +23,13 @@ class Tree {
 
 class ArrayListChallenge {
     public static void main(String[] args) {
-        List<Tree> treeList = new ArrayList<>();
+        List<Tree> treeList = new ArrayList<>(100);
         Random rand = new Random();
 
         //Create 100 tree objects
         for (int i = 0; i < 100; i++) {
             int leaves = rand.nextInt(100) + 1;
-            Tree tree = new Tree(leaves, i + 1);
-            treeList.add(tree);
+            treeList.add(new Tree(leaves, i + 1));
         }
 
         //Calculate the total number of leaves
