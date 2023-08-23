@@ -1,16 +1,15 @@
 package PersonalManagment;
 
 class Address {
-    private int addressID;
     private String streetName;
     private String city;
     private String postCode;
     private int houseNum;
 
-
+    Address(){
+    }
     //Constructors
-    Address(int addID, String street, String town, String postalCode, int houseNumber) {
-        setAddressID(addID);
+    Address(String street, String town, String postalCode, int houseNumber) {
         setStreetName(street);
         setCity(town);
         setPostCode(postalCode);
@@ -18,10 +17,6 @@ class Address {
     }
 
     //Getters
-    public int getAddressID() {
-        return addressID;
-    }
-
     public String getStreetName() {
         return streetName;
     }
@@ -40,10 +35,6 @@ class Address {
 
 
     //Setters
-    public void setAddressID(int addID) {
-        this.addressID = addID;
-    }
-
     public void setStreetName(String street) {
         this.streetName = street;
     }
@@ -58,15 +49,5 @@ class Address {
 
     public void setHouseNum(int houseNumber) {
         this.houseNum = houseNumber;
-    }
-
-
-    @Override
-    public String toString() {
-        return ("\n" + "-Address-" + "\n" +
-                "Address-ID: " + getAddressID() + "\n" +
-                "Street: " + getStreetName() + "\n"
-                + "City: " + getCity() + "\n" + "Post Code: " + getPostCode()
-                + "\n" + "House Number: " + getHouseNum() + "\n");
     }
 }

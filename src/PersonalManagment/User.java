@@ -10,6 +10,7 @@ class User {
     private String lastName;
     private String DOB;
     private Gender gender;
+    private Address address;
 
 
     //Constructors
@@ -25,6 +26,15 @@ class User {
         setLastName(surname);
         setDOB(birthday);
         setGender(gender);
+    }
+
+    User(int ID, String name, String surname, String birthday, Gender gender,  Address address1) {
+        setID(ID);
+        setFirstName(name);
+        setLastName(surname);
+        setDOB(birthday);
+        setGender(gender);
+        setAddress(address1);
     }
 
     //Getters
@@ -69,6 +79,10 @@ class User {
         this.gender = ofGender;
     }
 
+    public void setAddress(Address address1){
+        this.address = address1;
+    }
+
     @Override
     public String toString() {
         return ("\n" + "-Persons details-" + "\n" +
@@ -76,6 +90,9 @@ class User {
                 "Name: " + getFirstName() + "\n" +
                 "Last Name: " + getLastName() + "\n" +
                 "DOB: " + getDOB() + "\n" +
-                "Gender: " + getGender() + "\n");
+                "Gender: " + getGender() + "\n" +"\n" + "-Address-" + "\n" +
+                "Street: " + address.getStreetName() + "\n"
+                + "City: " + address.getCity() + "\n" + "Post Code: " + address.getPostCode()
+                + "\n" + "House Number: " + address.getHouseNum() + "\n");
     }
 }
