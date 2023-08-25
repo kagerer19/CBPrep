@@ -1,15 +1,16 @@
 package LinkedListPractise;
 
-public class linkedList {
-    static Node head = null;
-    public Node tail = null;
-
-    //add node will add a node to the end of the linked list
-    public void addNode(int data) {
-        System.out.println("Adding new node with value " + data + " at the end of the list");
+public class linkedList<T> {
+    node<T> tail;
+    public node<T> head;
+    //add a node to the end of the linked list
+    public void addNode(T data) {
+        StringBuilder message = new StringBuilder();
+        message.append("Adding new node with value").append(data)
+                .append(" at the end of the list");
 
         //Creating a new node
-        Node new_node = new Node(data);
+        node<T> new_node = new node<>(data);
         if (head == null) {
             //When list is empty, point to new_node
             head = new_node;
@@ -20,68 +21,138 @@ public class linkedList {
         }
     }
 
-    //Method for inserting a node at a specified position
-    static Node insertNode(Node headNode, int pos, int data) {
-        Node head = headNode;
-        if (pos < 0) {
-            System.out.println("Not valid");
-        }
+    //Insert a node at a specified position
+    void insertNode(int pos, T data) {
+        node<T> headNode = head;
+        StringBuilder message = new StringBuilder();
 
-        if (pos == 1) {
-            Node new_node = new Node(data);
-            new_node.next = headNode;
-            head = new_node;
+        if (pos < 0) {
+            message.append("Position is not valid");
+            System.out.println(message.toString());
         } else {
-            while (pos-- != 0) {
-                if (pos == 1) {
-                    Node new_node = new Node(data);
-                    new_node.next = headNode.next;
-                    headNode.next = new_node;
-                    break;
+            if (pos == 1) {
+                node<T> new_node = new node<>(data);
+                new_node.next = headNode;
+                head = new_node;
+            } else {
+                while (pos-- != 0) {
+                    if (pos == 1) {
+                        node<T> new_node = new node<>(data);
+                        new_node.next = headNode.next;
+                        headNode.next = new_node;
+                        break;
+                    }
+                    headNode = headNode.next;
                 }
-                headNode = headNode.next;
-            }
-            if(pos != 1){
-                System.out.println("Out of bounds");
+                message.append("added")
+                        .append(" -> ");
+                if (pos != 1) {
+                    message.append("Position is out of bounds");
+                    System.out.println(message.toString());
+                }
             }
         }
-        return head;
     }
 
-    //Display all nodes currently in the list
-    public void printData() {
-        Node current = head;
+    public int getSize() {
+        node<T> temp = head;
+        int count = 0;
+        while (temp != null) {
+            count++;
+            temp = temp.next;
+        }
+        return count;
+    }
+
+    //Get value from a specific position
+    void getValueAtIndexOf(int index) {
+        node<T> current = head;
+        int counter = 0;
+        StringBuilder message = new StringBuilder();
+
         if (head == null) {
-            System.out.println("List is empty");
+            message.append("List is empty");
+            System.out.println(message.toString());
             return;
         }
 
-        while (current != null) {
-            //print each node
-            System.out.println(current.data + " ");
+        while (current.next != null && counter < index) {
             current = current.next;
+            counter++;
+            if (counter == index) {
+                break;
+            }
         }
-        System.out.println();
+        message.append("The value at the current location is: ").append(current.data)
+                .append(" At the index ").append(index);
+        System.out.println(message.toString());
+    }
+
+     void deleteNode(int index) {
+         if (index == 1) {
+          head = head.next;
+        } else {
+            node<T> previous = head;
+            int count = 1;
+            while (count < index - 1) {
+                previous = previous.next;
+                count++;
+            }
+            node<T> current = previous.next;
+            previous.next = current.next;
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        node<T> current = head;
+
+        if (current == null) {
+            result.append("List is empty");
+        } else {
+            while (current != null) {
+                result.append(current.data);
+                if (current.next != null) {
+                    result.append(" -> ");
+                }
+                current = current.next;
+            }
+        }
+
+        return result.toString();
     }
 
     public static void main(String[] args) {
-        linkedList list = new linkedList();
-        list.addNode(5);
-        list.addNode(6);
-        list.addNode(7);
-        list.addNode(8);
-        list.addNode(9);
-        list.addNode(10);
-        list.addNode(11);
-        list.printData();
+        linkedList<Integer> list = new linkedList<Integer>();
 
-        insertNode(head, 5, 4);
-        list.printData();
+        list.addNode(17);
+        System.out.println(list.toString());
+        list.addNode(18);
+        System.out.println(list.toString());
+        list.addNode(19);
+        System.out.println(list.toString());
+        list.insertNode(4, 20);
+        list.addNode(33);
+        System.out.println(list.toString());
+        list.addNode(41);
+        System.out.println(list.toString());
+        list.addNode(23);
+        System.out.println(list.toString());
+        list.deleteNode(5);
+        System.out.println(list.toString());
+        list.deleteNode(4);
+        System.out.println(list.toString());
+        list.deleteNode(3);
+        System.out.println(list.toString());
+        list.deleteNode(2);
+        System.out.println(list.toString());
+        list.deleteNode(1);
+        System.out.println(list.toString());
+
+
+        System.out.println("-".repeat(20));
+        System.out.println("The size of this Linked list is:  " + list.getSize());
+        list.getValueAtIndexOf(1);
     }
-
-    /*boolean add(Node e)
-        void    add(int index, Node element)
-        int     size()
-        Node get(int index)
-        Node remove(int index)*/
 }

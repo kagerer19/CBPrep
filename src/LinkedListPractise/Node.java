@@ -1,12 +1,13 @@
 package LinkedListPractise;
 
-class Node {
-        int data;
-        Node next;
+class node<T> {
+    node<T> head;
+    T data;
+    node<T> next;
 
-        //Node constructor
-        Node(int b) {
-            this.data = b;
-            this.next = null;
-        }
+    node(T data)
+    {
+        this.data = data;
+        this.next = null;
     }
+}
