@@ -1,19 +1,19 @@
 package PersonalManagment;
 
-class Address {
+class Address extends User {
     private String streetName;
     private String city;
     private String postCode;
     private int houseNum;
 
     Address(){
+        super();
     }
     //Constructors
     Address(String street, String town, String postalCode, int houseNumber) {
-        setStreetName(street);
-        setCity(town);
-        setPostCode(postalCode);
-        setHouseNum(houseNumber);
+        this.streetName = street;
+        this.postCode = postalCode;
+        this.houseNum = houseNumber;
     }
 
     //Getters
@@ -31,23 +31,5 @@ class Address {
 
     public int getHouseNum() {
         return houseNum;
-    }
-
-
-    //Setters
-    public void setStreetName(String street) {
-        this.streetName = street;
-    }
-
-    public void setCity(String town) {
-        this.city = town;
-    }
-
-    public void setPostCode(String postalCode) {
-        this.postCode = postalCode;
-    }
-
-    public void setHouseNum(int houseNumber) {
-        this.houseNum = houseNumber;
     }
 }

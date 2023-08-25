@@ -9,8 +9,13 @@ class PV {
     public static void main(String[] args) {
         PV pvCodersBay = new PV();
 
+        pvCodersBay.createNewUser(100, "Garth", "Smith", "04/12", User.Gender.MALE);
+        pvCodersBay.createNewUser(103, "Gareth", "Bale", "04/09", User.Gender.MALE);
         pvCodersBay.createNewUser(104, "Jessie", "Bale", "04/09", User.Gender.FEMALE, new Address("Heindlstrasse", "Linz", "4020", 22));
 
+        pvCodersBay.createNewUser(109, "Alex", "Kagerer");
+
+        System.out.println(pvCodersBay.users);
         System.out.println("-".repeat(10));
 
         pvCodersBay.removeUser(103);

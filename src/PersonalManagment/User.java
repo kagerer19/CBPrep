@@ -1,6 +1,10 @@
 package PersonalManagment;
 
 class User {
+    public User() {
+
+    }
+
     enum Gender {
         MALE, FEMALE, OTHER
     }
@@ -85,14 +89,26 @@ class User {
 
     @Override
     public String toString() {
-        return ("\n" + "-Persons details-" + "\n" +
-                "User-ID: " + getID() + "\n" +
-                "Name: " + getFirstName() + "\n" +
-                "Last Name: " + getLastName() + "\n" +
-                "DOB: " + getDOB() + "\n" +
-                "Gender: " + getGender() + "\n" +"\n" + "-Address-" + "\n" +
-                "Street: " + address.getStreetName() + "\n"
-                + "City: " + address.getCity() + "\n" + "Post Code: " + address.getPostCode()
-                + "\n" + "House Number: " + address.getHouseNum() + "\n");
+        StringBuilder result = new StringBuilder();
+        result.append("\n-Person's details-\n");
+        result.append("User-ID: ").append(getID()).append("\n");
+        result.append("Name: ").append(getFirstName()).append("\n");
+        result.append("Last Name: ").append(getLastName()).append("\n");
+        result.append("DOB: ").append(getDOB()).append("\n");
+        result.append("Gender: ").append(getGender()).append("\n");
+
+        if (address != null) {
+            result.append("\n-Address-\n");
+            result.append("User-ID: ").append(getID()).append("\n");
+            result.append("Street: ").append(address.getStreetName()).append("\n");
+            result.append("City: ").append(address.getCity()).append("\n");
+            result.append("Post Code: ").append(address.getPostCode()).append("\n");
+            result.append("House Number: ").append(address.getHouseNum()).append("\n");
+        } else {
+            result.append("\nNo Address Information\n");
+        }
+
+        return result.toString();
     }
+
 }
