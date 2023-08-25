@@ -2,7 +2,6 @@ package PersonalManagment;
 
 class User {
     public User() {
-
     }
 
     enum Gender {
@@ -15,7 +14,6 @@ class User {
     private String DOB;
     private Gender gender;
     private Address address;
-
 
     //Constructors
     User(int ID, String name, String surname) {
