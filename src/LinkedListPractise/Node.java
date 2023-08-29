@@ -1,13 +1,16 @@
 package LinkedListPractise;
 
-class node<T> {
-    node<T> head;
-    T data;
-    node<T> next;
+class Node {
+        public int data;
+        public Node next;
 
-    node(T data)
-    {
-        this.data = data;
-        this.next = null;
+        //Node constructor
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+
+        public void getNode(Node head){
+
+        }
     }
-}
