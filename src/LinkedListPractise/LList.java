@@ -1,8 +1,10 @@
 package LinkedListPractise;
 
-public class linkedList {
+public class LList {
     static Node head = null;
     public Node tail = null;
+
+    int size = 0;
 
     //add a node to the end of the linked list
     public void add(int data) {
@@ -20,10 +22,17 @@ public class linkedList {
             tail.next = new_node;
             tail = new_node;
         }
+        size++;
+    }
+
+    //Add method for Boolean add();
+    public boolean add(Node e) {
+        add(e.data);
+        return true;
     }
 
     //Insert a node at a specified position
-    public static void add(int pos, int data) {
+    public void add(int pos, int data) {
         Node headNode = head;
         StringBuilder message = new StringBuilder();
 
@@ -53,26 +62,21 @@ public class linkedList {
                 }
             }
         }
+        size++;
     }
 
     //Get size of list
     public int size() {
-        Node temp = head;
-        int count = 0;
-        while (temp != null) {
-            count++;
-            temp = temp.next;
-        }
-        return count;
+        return  size;
     }
 
     //Get value from a specific position
-    public static void get(int index) {
+    public void get(int index) {
         Node current = head;
         int counter = 0;
         StringBuilder message = new StringBuilder();
 
-        if (head == null) {
+        if (current == null) {
             message.append("List is empty");
             System.out.println(message);
             return;
@@ -86,11 +90,11 @@ public class linkedList {
             }
         }
         message.append("The value at the current location is: ").append(current.data)
-                .append(" At the index ").append(index);
+                .append(" At the index ").append(counter);
         System.out.println(message);
     }
 
-    public static void remove(int index) {
+    public void remove(int index) {
         if (index == 1) {
             head = head.next;
         } else {
@@ -103,6 +107,7 @@ public class linkedList {
             Node current = previous.next;
             previous.next = current.next;
         }
+        size--;
     }
 
     @Override
@@ -121,40 +126,6 @@ public class linkedList {
                 current = current.next;
             }
         }
-
         return result.toString();
-    }
-
-    public static void main(String[] args) {
-        linkedList list = new linkedList();
-
-        list.add(17);
-        System.out.println(list);
-        list.add(18);
-        System.out.println(list);
-        list.add(19);
-        System.out.println(list);
-        add(4, 20);
-        list.add(33);
-        System.out.println(list);
-        list.add(41);
-        System.out.println(list);
-        list.add(23);
-        System.out.println(list);
-        remove(5);
-        System.out.println(list);
-        remove(4);
-        System.out.println(list);
-        remove(3);
-        System.out.println(list);
-        remove(2);
-        System.out.println(list);
-        remove(1);
-        System.out.println(list);
-
-
-        System.out.println("-".repeat(20));
-        System.out.println("The size of this Linked list is:  " + list.size());
-        get(1);
     }
 }
