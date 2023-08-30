@@ -17,25 +17,25 @@ class User {
 
     //Constructors
     User(int ID, String name, String surname) {
-        setID(ID);
-        setFirstName(name);
-        setLastName(surname);
+        this.userID = ID;
+        this.firstName = name;
+        this.lastName = surname;
     }
 
     User(int ID, String name, String surname, String birthday, Gender gender) {
-        setID(ID);
-        setFirstName(name);
-        setLastName(surname);
-        setDOB(birthday);
-        setGender(gender);
+        this.userID = ID;
+        this.firstName = name;
+        this.lastName = surname;
+        this.DOB = birthday;
+        this.gender = gender;
     }
 
-    User(int ID, String name, String surname, String birthday, Gender gender,  Address address1) {
-        setID(ID);
-        setFirstName(name);
-        setLastName(surname);
-        setDOB(birthday);
-        setGender(gender);
+    User(int ID, String name, String surname, String birthday, Gender gender, Address address1) {
+        this.userID = ID;
+        this.firstName = name;
+        this.lastName = surname;
+        this.DOB = birthday;
+        this.gender = gender;
         setAddress(address1);
     }
 
@@ -60,28 +60,7 @@ class User {
         return gender;
     }
 
-    //Setters
-    public void setID(int ID) {
-        this.userID = ID;
-    }
-
-    public void setFirstName(String name) {
-        this.firstName = name;
-    }
-
-    public void setLastName(String surname) {
-        this.lastName = surname;
-    }
-
-    public void setDOB(String birthday) {
-        this.DOB = birthday;
-    }
-
-    public void setGender(Gender ofGender) {
-        this.gender = ofGender;
-    }
-
-    public void setAddress(Address address1){
+    public void setAddress(Address address1) {
         this.address = address1;
     }
 

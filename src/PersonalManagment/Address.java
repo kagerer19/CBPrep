@@ -1,17 +1,16 @@
 package PersonalManagment;
 
-class Address extends User {
+class Address {
     private String streetName;
     private String city;
     private String postCode;
     private int houseNum;
 
-    Address(){
-        super();
-    }
     //Constructors
     Address(String street, String town, String postalCode, int houseNumber) {
+        super();
         this.streetName = street;
+        this.city = town;
         this.postCode = postalCode;
         this.houseNum = houseNumber;
     }
@@ -32,4 +31,6 @@ class Address extends User {
     public int getHouseNum() {
         return houseNum;
     }
+
+
 }
