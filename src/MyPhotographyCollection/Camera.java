@@ -3,31 +3,29 @@ package MyPhotographyCollection;
 public class Camera {
     private String brand;
     private double megaPixels;
-    private double displayCamCount;
+    private double displaySize;
     private boolean isColor;
-    public Lens myLens;
+    private Lens myLens;
     static int CamCount = 0;
 
-    Camera() {
-    }
-
     Camera(String make, double pixels, double displayResolution, boolean hasColor) {
-        this.brand = make;
-        this.megaPixels = pixels;
-        this.displayCamCount = displayResolution;
-        this.isColor = hasColor;
+        setBrand(make);
+        setMegaPixels(pixels);
+        setDisplay(displayResolution);
+        setColor(hasColor);
         CamCount++;
     }
 
     Camera(String make, double pixels, double displayResolution, boolean hasColor, Lens lens1) {
-        this.brand = make;
-        this.megaPixels = pixels;
-        this.displayCamCount = displayResolution;
-        this.isColor = hasColor;
+        setBrand(make);
+        setMegaPixels(pixels);
+        setDisplay(displayResolution);
+        setColor(hasColor);
         setLens(lens1);
         CamCount++;
     }
 
+    //Getters
     public String getBrand() {
         return brand;
     }
@@ -36,16 +34,18 @@ public class Camera {
         return megaPixels;
     }
 
-    public double getDisplayCamCount() {
-        return displayCamCount;
+    public double getDisplaySize() {
+        return displaySize;
     }
 
     public boolean getColorSpec() {
         return isColor;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+
+    //Setters
+    public void setBrand(String make) {
+        this.brand = make;
     }
 
     public void setLens(Lens lens1) {
@@ -56,8 +56,8 @@ public class Camera {
         this.megaPixels = pixels;
     }
 
-    public void setDisplayCamCount(double displayResolution) {
-        this.displayCamCount = displayResolution;
+    public void setDisplay(double displayResolution) {
+        this.displaySize = displayResolution;
     }
 
     public void setColor(boolean hasColor) {
@@ -69,19 +69,16 @@ public class Camera {
         StringBuilder result = new StringBuilder();
         result.append("\n-Camera details-\n");
         result.append("Brand: ").append(getBrand()).append("\n");
-        result.append("Mega Pixels: ").append(getMegaPixels()).append("\n");
-        result.append("Display CamCount: ").append(getDisplayCamCount()).append("\n");
-        result.append("Color: ").append(getColorSpec()).append("\n");
-        result.append("\n-Camera count-\n").append(CamCount).append("\n");
-
+        result.append("Mega Pixels: ").append(getMegaPixels()).append(" MP").append("\n");
+        result.append("Display: ").append(getDisplaySize()).append(" in").append("\n");
+        result.append("Color-images: ").append(getColorSpec()).append("\n");
 
         if (myLens != null) {
             result.append("\n-Lens details-\n");
-            result.append("Max Zoom: ").append(myLens.getMaxZoom()).append("\n");
-            result.append("Min Zoom: ").append(myLens.getMinZoom()).append("\n");
-            result.append("\n-Lens count-\n").append(Lens.lensCount).append("\n");
+            result.append("Max Zoom: ").append(myLens.getMaxZoom()).append(" mm").append("\n");
+            result.append("Min Zoom: ").append(myLens.getMinZoom()).append(" mm").append("\n");
         } else {
-            result.append("\nNo lens information found\n");
+            result.append("\nNo lens information found for this Camera\n");
         }
         return result.toString();
     }
