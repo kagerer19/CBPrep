@@ -3,7 +3,7 @@ package TheStack;
 import DoublyLinkedList.DoubleLinkedList;
 
 class IntStack {
-    public DoubleLinkedList stackedDList;
+    public DoubleLinkedList<Integer> stackedDList;
     public int size;
 
     public IntStack() {
@@ -26,9 +26,10 @@ class IntStack {
 
     public int pop() {
         if (!isEmpty()) {
-            int poppedElement = (int) stackedDList.get(stackedDList.size() - 1);
+            int poppedElement = stackedDList.get(stackedDList.size() - 1);
             stackedDList.remove(stackedDList.size() - 1);
             size--;
+            System.out.println( poppedElement +" has been removed from the end of the stack");
             return poppedElement;
         } else {
             System.out.println("Error: Stack is empty");
@@ -38,7 +39,7 @@ class IntStack {
 
     public int peek() {
         try {
-            return (int) stackedDList.get(stackedDList.size() - 1);
+            return stackedDList.get(stackedDList.size() - 1);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Error: Stack is empty");
             return -1; // Return a default value in case of an exception
